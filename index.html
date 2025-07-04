@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NIXY MINE</title>
-  <!-- Tambahkan ini di dalam <head> -->
-<link rel="icon" href="nixy.jpg" type="image/png" />
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <style>
@@ -17,33 +15,24 @@
 
     body {
       font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
       color: #fff;
       padding: 40px 20px;
       text-align: center;
-      min-height: 100vh;
-      background: linear-gradient(-45deg, #1f1c2c, #928dab, #1f1c2c, #928dab);
-      background-size: 400% 400%;
-      animation: bgAnimate 15s ease infinite;
-    }
-
-    @keyframes bgAnimate {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
     }
 
     .container {
       max-width: 900px;
       margin: auto;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.06);
       border-radius: 20px;
       padding: 40px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       color: #ff786f;
       margin-bottom: 15px;
     }
@@ -73,6 +62,8 @@
       text-decoration: none;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       box-shadow: 0 8px 20px rgba(255, 94, 94, 0.4);
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .button:hover {
@@ -80,14 +71,12 @@
       box-shadow: 0 10px 25px rgba(255, 94, 94, 0.6);
     }
 
-    hr {
-      border: 0;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.2);
-      margin: 30px auto;
-      width: 80%;
+    .button:focus,
+    .button:active {
+      outline: none;
     }
 
+    /* === Video Modal === */
     .video-modal {
       display: none;
       position: fixed;
@@ -140,6 +129,14 @@
       border-radius: 20px;
     }
 
+    hr {
+      border: 0;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+      margin: 30px auto;
+      width: 80%;
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       .button { padding: 12px 24px; font-size: 0.95rem; }
@@ -150,21 +147,29 @@
 
   <div class="container">
     <h1>NIXY MINE</h1>
-    <p>i'm developer this site.</p>
-
+    <p>i'm developer this site</p>
+    
     <hr>
 
     <div>
       <h3>UNDUH</h3>
-      <a href="LINK_DOWNLOAD" class="button">KLIK DISINI</a>
+      <a href="LINK" class="button">KLIK DISINI</a>
     </div>
-
+    
     <hr>
-
+    
     <div>
       <h2></h2>
-      <button class="button" onclick="openModal()">TUTORIAL UNDUH</button>
+      <button class="button" onclick="openModal()">TUTORIAL UNDUH l</button>
     </div><hr>
+    
+    <div>
+  <h2></h2>
+  <a href="https://youtu.be/eLBSCTD3eRo?si=gsTCYpIZAIvsMwZp" class="button" target="_blank">TUTORIAL UNDUH ll</a>
+</div>
+
+
+<hr>
   </div>
 
   <!-- VIDEO MODAL -->
@@ -180,14 +185,14 @@
     </div>
   </div>
 
-  <!-- JS -->
+  <!-- JS Plyr -->
   <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
   <script>
     const videoModal = document.getElementById('videoModal');
     const player = new Plyr('#player', {
       quality: {
         default: 1080,
-        options: [1080, 720],
+        options: [1080],
         forced: true
       },
       controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
@@ -203,15 +208,20 @@
       videoModal.classList.remove('active');
     }
 
+    // Lock orientation saat fullscreen
     player.on('enterfullscreen', () => {
       if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('landscape').catch(() => {});
+        screen.orientation.lock('landscape').catch(() => {
+          console.warn('Gagal kunci landscape');
+        });
       }
     });
 
     player.on('exitfullscreen', () => {
       if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('portrait').catch(() => {});
+        screen.orientation.lock('portrait').catch(() => {
+          console.warn('Gagal kunci portrait');
+        });
       }
     });
   </script>
