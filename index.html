@@ -184,7 +184,6 @@
       <video id="player" playsinline controls>
         <source src="1080.mp4" type="video/mp4" size="1080" />
         <source src="720.mp4" type="video/mp4" size="720" />
-        <source src="360.mp4" type="video/mp4" size="360" />
         Maaf, browser kamu tidak mendukung video.
       </video>
     </div>
@@ -197,7 +196,7 @@
     const player = new Plyr('#player', {
       quality: {
         default: 1080,
-        options: [1080],
+        options: [1080, 720],
         forced: true
       },
       controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
