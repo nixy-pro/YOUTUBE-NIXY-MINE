@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NIXY MINE</title>
+  <link rel="icon" href="nixy.jpg" type="image/png" />
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(15px);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #ff786f;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #e0e0e0;
+      margin-bottom: 30px;
+    }
+
+    h2, h3, h5 {
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 220px;
+      padding: 14px 35px;
+      margin: 15px 10px;
+      border-radius: 40px;
+      background: linear-gradient(to right, #ff5e5e, #ff8a65);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 8px 20px rgba(255, 94, 94, 0.4);
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(255, 94, 94, 0.6);
+    }
+
+    .button:focus,
+    .button:active {
+      outline: none;
+    }
+
+    /* === Video Modal === */
+    .video-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .video-modal.active {
+      display: flex;
+    }
+
+    .video-box {
+      position: relative;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: black;
+    }
+
+    #closeVideoBtn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: bold;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      z-index: 9999;
+      transition: 0.2s ease;
+    }
+
+    #closeVideoBtn:hover {
+      background: #ff3f2f;
+      color: white;
+    }
+
+    video {
+      width: 100%;
+      background: black;
+      border-radius: 20px;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+      margin: 30px auto;
+      width: 80%;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .button { padding: 12px 24px; font-size: 0.95rem; min-width: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>X Launcher<br>Pro APK</h1>
+    <p>V - 3.4.11</p>
+    
+    <hr>
+
+    <div>
+      <h3>UNDUH</h3>
+      <a href="https://sfl.gl/vdqo9n" class="button">KLIK DISINI</a>
+    </div>
+    
+    <hr>
+    
+    <div>
+      <h5>TUTORIAL UNDUH l</h5>
+      <button class="button" onclick="openModal()">KLIK DISINI</button>
+    </div>
+
+    <hr>
+    
+    <div>
+      <h5>TUTORIAL UNDUH ll</h5>
+      <a href="https://youtu.be/eLBSCTD3eRo?si=gsTCYpIZAIvsMwZp" class="button" target="_blank">KLIK DISINI</a>
+    </div>
+
+    <hr>
+  </div>
+
+  <!-- VIDEO MODAL -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-box">
+      <button id="closeVideoBtn" onclick="closeModal()">&#10005;</button>
+      <video id="player" playsinline controls>
+        <source src="1080.mp4" type="video/mp4" size="1080" />
+        <source src="720.mp4" type="video/mp4" size="720" />
+        Maaf, browser kamu tidak mendukung video.
+      </video>
+    </div>
+  </div>
+
+  <!-- JS Plyr -->
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+  <script>
+    const videoModal = document.getElementById('videoModal');
+    const player = new Plyr('#player', {
+      quality: {
+        default: 1080,
+        options: [1080, 720],
+        forced: true
+      },
+      controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
+    });
+
+    function openModal() {
+      videoModal.classList.add('active');
+      player.play();
+    }
+
+    function closeModal() {
+      player.pause();
+      videoModal.classList.remove('active');
+    }
+
+    // Lock orientation saat fullscreen
+    player.on('enterfullscreen', () => {
+      if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock('landscape').catch(() => {
+          console.warn('Gagal kunci landscape');
+        });
+      }
+    });
+
+    player.on('exitfullscreen', () => {
+      if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock('portrait').catch(() => {
+          console.warn('Gagal kunci portrait');
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
