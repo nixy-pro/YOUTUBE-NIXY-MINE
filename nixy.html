@@ -28,7 +28,7 @@
       background: rgba(255, 255, 255, 0.06);
       border-radius: 20px;
       padding: 40px;
-      padding-bottom: 100px; /* FIX Biar gak nempel bawah */
+      margin-bottom: 100px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(15px);
     }
@@ -81,9 +81,7 @@
       outline: none;
     }
 
-    /* === VIDEO MODAL === */
-    .video-modal,
-    .image-modal {
+    .video-modal, .image-modal {
       display: none;
       position: fixed;
       top: 0; left: 0;
@@ -94,13 +92,11 @@
       z-index: 9999;
     }
 
-    .video-modal.active,
-    .image-modal.active {
+    .video-modal.active, .image-modal.active {
       display: flex;
     }
 
-    .video-box,
-    .image-box {
+    .video-box, .image-box {
       position: relative;
       width: 90%;
       max-width: 800px;
@@ -109,8 +105,7 @@
       background: black;
     }
 
-    #closeVideoBtn,
-    #closeImageBtn {
+    #closeVideoBtn, #closeImageBtn {
       position: absolute;
       top: 10px;
       left: 10px;
@@ -127,15 +122,13 @@
       transition: 0.2s ease;
     }
 
-    #closeVideoBtn:hover,
-    #closeImageBtn:hover {
+    #closeVideoBtn:hover, #closeImageBtn:hover {
       background: #ff3f2f;
       color: white;
     }
 
     video, img {
       width: 100%;
-      display: block;
       border-radius: 20px;
     }
 
@@ -158,23 +151,23 @@
   <div class="container">
     <h1>NIXY MINE</h1>
     <p>i'm developer this site</p>
-    
+
     <hr>
 
     <div>
       <h3>UNDUH</h3>
       <a href="LINK" class="button">KLIK DISINI</a>
     </div>
-    
+
     <hr>
-    
+
     <div>
       <h5>TUTORIAL UNDUH I</h5>
       <button class="button" onclick="openModal()">KLIK DISINI</button>
     </div>
 
     <hr>
-    
+
     <div>
       <h5>TUTORIAL UNDUH II</h5>
       <a href="https://youtu.be/eLBSCTD3eRo?si=gsTCYpIZAIvsMwZp" class="button" target="_blank">KLIK DISINI</a>
@@ -184,7 +177,7 @@
 
     <div>
       <h5>TUTORIAL UNDUH GAMBAR</h5>
-      <button class="button" onclick="openImage()">LIHAT GAMBAR</button>
+      <button class="button" onclick="openImageModal()">LIHAT GAMBAR</button>
     </div>
 
     <hr>
@@ -205,12 +198,12 @@
   <!-- IMAGE MODAL -->
   <div class="image-modal" id="imageModal">
     <div class="image-box">
-      <button id="closeImageBtn" onclick="closeImage()">&#10005;</button>
-      <img src="gambar.jpg" alt="Tutorial Gambar" />
+      <button id="closeImageBtn" onclick="closeImageModal()">&#10005;</button>
+      <img src="https://www.nixypedia.xyz/NIXY%20Pedia.jpg" alt="Tutorial Gambar">
     </div>
   </div>
 
-  <!-- JS -->
+  <!-- JS Plyr -->
   <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
   <script>
     const videoModal = document.getElementById('videoModal');
@@ -234,30 +227,25 @@
       videoModal.classList.remove('active');
     }
 
-    function openImage() {
+    function openImageModal() {
       imageModal.classList.add('active');
     }
 
-    function closeImage() {
+    function closeImageModal() {
       imageModal.classList.remove('active');
     }
 
     player.on('enterfullscreen', () => {
       if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('landscape').catch(() => {
-          console.warn('Gagal kunci landscape');
-        });
+        screen.orientation.lock('landscape').catch(() => console.warn('Gagal kunci landscape'));
       }
     });
 
     player.on('exitfullscreen', () => {
       if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('portrait').catch(() => {
-          console.warn('Gagal kunci portrait');
-        });
+        screen.orientation.lock('portrait').catch(() => console.warn('Gagal kunci portrait'));
       }
     });
   </script>
-
 </body>
 </html>
