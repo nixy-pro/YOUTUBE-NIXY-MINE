@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- ====== META & TITLE ====== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIXY MINE</title>
+
+  <!-- ====== ICON & FONT & CSS ====== -->
+  <link rel="icon" href="nixy.jpg" type="image/png" />
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- ====== CUSTOM STYLE ====== -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(15px);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #ff786f;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #e0e0e0;
+      margin-bottom: 30px;
+    }
+
+    h2, h3, h5 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 220px;
+      padding: 14px 35px;
+      margin: 15px 10px;
+      border-radius: 40px;
+      background: linear-gradient(to right, #ff5e5e, #ff8a65);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 8px 20px rgba(255, 94, 94, 0.4);
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(255, 94, 94, 0.6);
+    }
+
+    .video-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .video-modal.active {
+      display: flex;
+    }
+
+    .video-box {
+      position: relative;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #111;
+      padding: 30px 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    #closeVideoBtn, #closeImageBtn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: bold;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      z-index: 9999;
+      transition: 0.2s ease;
+    }
+
+    #closeVideoBtn:hover, #closeImageBtn:hover {
+      background: #ff3f2f;
+      color: white;
+    }
+
+    .copy-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1c1c1c;
+      padding: 10px 15px;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+
+    .copy-row img {
+      width: 28px;
+      height: 28px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    .copy-label {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    .code {
+      flex: 1;
+      margin: 0 10px;
+      text-align: left;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #fff;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .copy-row .button {
+      padding: 8px 16px;
+      min-width: unset;
+      font-size: 0.85rem;
+      margin: 0;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+      margin: 30px auto;
+      width: 80%;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .button {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        min-width: 180px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ====== MAIN CONTENT / CONTAINER START ====== -->
+  <div class="container">
+
+    <!-- ====== LOGO & JUDUL ====== -->
+    <img src="https://static.modded-1.com/play-lh.googleusercontent.com/mjmbWruxfo8oYHsBNI7b76KLj1AEJQo7hXwlmi05EvfFwubOjo8nQJrVEHRe4Vbgpo8=s180-rw"
+         alt="NIXY MINE"
+         style="max-width:120px; margin-bottom:20px; border-radius:5%" />
+
+    <h1>InShot</h1>
+    <p>PREMIUM UNLOCKED</p>
+    <hr />
+
+    <!-- ====== UNDUH BAGIAN ====== -->
+    <div>
+      <h3>UNDUH</h3>
+      <a href="https://sfl.gl/Ywr8LV" class="button">KLIK DISINI</a>
+    </div>
+    <hr />
+
+    <!-- ====== TUTORIAL I ====== -->
+    <div>
+      <h5>TUTORIAL UNDUH I</h5>
+      <button class="button" onclick="openModal()">KLIK DISINI</button>
+    </div>
+    <hr />
+
+    <!-- ====== TUTORIAL II ====== -->
+    <div>
+      <h5>TUTORIAL UNDUH II</h5>
+      <a href="https://youtu.be/eLBSCTD3eRo?si=gsTCYpIZAIvsMwZp" class="button" target="_blank">KLIK DISINI</a>
+    </div>
+    <hr />
+
+    <!-- ====== DONASI ====== -->
+    <div>
+      <h5>DONASI</h5>
+      <button class="button" onclick="openImageModal()">KLIK DISINI</button>
+    </div>
+    <hr />
+
+  </div>
+  <!-- ====== MAIN CONTENT / CONTAINER END ====== -->
+
+  <!-- ====== VIDEO MODAL (TUTORIAL I) ====== -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-box">
+      <button id="closeVideoBtn" onclick="closeModal()">&#10005;</button>
+      <video id="player" playsinline controls>
+        <source src="1080.mp4" type="video/mp4" size="1080" />
+        <source src="720.mp4" type="video/mp4" size="720" />
+        Maaf, browser kamu tidak mendukung video.
+      </video>
+    </div>
+  </div>
+
+  <!-- ====== DONASI ====== -->
+  <div class="video-modal" id="imageModal">
+    <div class="video-box">
+      <button id="closeImageBtn" onclick="closeImageModal()">&#10005;</button>
+      <h2>DONASI</h2>
+      <hr />
+
+      <!-- ====== BRI ====== -->
+      <div class="copy-row">
+        <div class="copy-label"><img src="bri.png" alt="BRI" /></div>
+        <div class="code" title="408601039840534">BRI • 408601039840534</div>
+        <button class="button" onclick="copyToClipboard('408601039840534')">SALIN</button>
+      </div>
+      <hr />
+      
+
+      <!-- ====== DANA ====== -->
+      <div class="copy-row">
+        <div class="copy-label"><img src="dana.png" alt="DANA" /></div>
+        <div class="code" title="081324481206">DANA - 081324481206</div>
+        <button class="button" onclick="copyToClipboard('081324481206')">SALIN</button>
+      </div>
+      <hr />
+
+      <!-- ====== GOPAY ====== -->
+      <div class="copy-row">
+        <div class="copy-label"><img src="gopay.png" alt="GOPAY" /></div>
+        <div class="code" title="082119690755">GoPay • 082119690755</div>
+        <button class="button" onclick="copyToClipboard('082119690755')">SALIN</button>
+      </div>
+      <hr />
+
+      <button class="button" onclick="closeImageModal()">TUTUP</button>
+    </div>
+  </div>
+
+  <!-- ====== SCRIPT ====== -->
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+  <script>
+    const videoModal = document.getElementById('videoModal');
+    const imageModal = document.getElementById('imageModal');
+
+    const player = new Plyr('#player', {
+      quality: {
+        default: 1080,
+        options: [1080, 720],
+        forced: true
+      },
+      controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
+    });
+
+    function openModal() {
+      videoModal.classList.add('active');
+      player.play();
+    }
+
+    function closeModal() {
+      player.pause();
+      videoModal.classList.remove('active');
+    }
+
+    function openImageModal() {
+      imageModal.classList.add('active');
+    }
+
+    function closeImageModal() {
+      imageModal.classList.remove('active');
+    }
+
+    function copyToClipboard(t) {
+      navigator.clipboard.writeText(t).then(
+        () => alert("Berhasil Disalin : " + t),
+        () => alert("Gagal Menyalin")
+      );
+    }
+
+    player.on('enterfullscreen', () => {
+      screen.orientation && screen.orientation.lock && screen.orientation.lock('landscape').catch(() => {});
+    });
+
+    player.on('exitfullscreen', () => {
+      screen.orientation && screen.orientation.lock && screen.orientation.lock('portrait').catch(() => {});
+    });
+  </script>
+
+</body>
+</html>
