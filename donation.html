@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .rekening-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 400px;
+      font-family: Arial, sans-serif;
+    }
+
+    .rekening-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .logo-bank {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .rekening-detail {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .bank-name {
+      font-size: 13px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 2px;
+    }
+
+    .nomor-rekening {
+      font-size: 11px;
+      color: #555;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .copy-button {
+      font-size: 11px;
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .copy-button:active {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="rekening-container">
+    <!-- Rekening 1 -->
+    <div class="rekening-box">
+      <img src="https://via.placeholder.com/100" class="logo-bank" alt="Logo Bank 1">
+      <div class="rekening-detail">
+        <div class="bank-name">BANK BCA</div>
+        <div class="nomor-rekening" id="rekening1">12345678901234567890</div>
+      </div>
+      <button class="copy-button" onclick="salinRekening('rekening1')">Salin</button>
+    </div>
+
+    <!-- Rekening 2 -->
+    <div class="rekening-box">
+      <img src="https://via.placeholder.com/100" class="logo-bank" alt="Logo Bank 2">
+      <div class="rekening-detail">
+        <div class="bank-name">BANK MANDIRI</div>
+        <div class="nomor-rekening" id="rekening2">98765432109876543210</div>
+      </div>
+      <button class="copy-button" onclick="salinRekening('rekening2')">Salin</button>
+    </div>
+
+    <!-- Rekening 3 -->
+    <div class="rekening-box">
+      <img src="https://via.placeholder.com/100" class="logo-bank" alt="Logo Bank 3">
+      <div class="rekening-detail">
+        <div class="bank-name">BANK BNI</div>
+        <div class="nomor-rekening" id="rekening3">11223344556677889900</div>
+      </div>
+      <button class="copy-button" onclick="salinRekening('rekening3')">Salin</button>
+    </div>
+  </div>
+
+  <script>
+    function salinRekening(id) {
+      const rekening = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(rekening).then(() => {
+        alert("Nomor rekening disalin: " + rekening);
+      }).catch(() => {
+        alert("Gagal menyalin");
+      });
+    }
+  </script>
+
+</body>
+</html>
