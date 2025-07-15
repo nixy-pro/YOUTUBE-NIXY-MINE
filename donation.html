@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Donation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
@@ -9,136 +12,242 @@
 
     body {
       margin: 0;
-      padding: 16px;
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-    }
-
-    .rekening-container {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      max-width: 100%;
-    }
-
-    .rekening-box {
+      padding: 0;
+      font-family: 'Inter', sans-serif;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      background-color: #fff;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fefcea, #f1f1f1);
+      color: #1f1f1f;
     }
 
-    .logo-bank {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
+    .container {
+      width: 100%;
+      max-width: 500px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      animation: popin 0.7s ease;
     }
 
-    .rekening-detail {
-      flex: 1;
-      min-width: 0;
+    @keyframes popin {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
-    .bank-name {
+    .card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 20px;
+      padding: 16px 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .dana {
+      background: linear-gradient(135deg, #00aaff, #009ee0);
+      color: white;
+    }
+
+    .gopay {
+      background: linear-gradient(135deg, #00b8d4, #0097a7);
+      color: white;
+    }
+
+    .usdt {
+      background: linear-gradient(135deg, #2ecc71, #27ae60);
+      color: white;
+    }
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow: hidden;
+    }
+
+    .bank {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .subinfo {
+      font-size: 13px;
+      opacity: 0.85;
+    }
+
+    .rek {
       font-size: 14px;
-      font-weight: bold;
-      color: #222;
-      margin-bottom: 4px;
-    }
-
-    .nomor-rekening {
-      font-size: 12px;
-      color: #555;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      max-width: 200px;
     }
 
-    .copy-button {
-      font-size: 12px;
-      padding: 6px 10px;
-      background-color: #4CAF50;
+    .btn-copy {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       color: white;
-      border: none;
-      border-radius: 6px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       cursor: pointer;
-      flex-shrink: 0;
+      transition: 0.25s;
     }
 
-    .copy-button:active {
-      background-color: #3e8e41;
+    .btn-copy:hover {
+      background: rgba(255, 255, 255, 0.25);
     }
 
-    @media (max-width: 400px) {
-      .rekening-box {
-        padding: 10px;
-        gap: 10px;
-      }
+    .btn-copy svg {
+      width: 16px;
+      height: 16px;
+    }
 
-      .bank-name {
-        font-size: 13px;
-      }
+    #toast {
+      visibility: hidden;
+      min-width: 200px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 10px;
+      padding: 12px;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      font-size: 14px;
+    }
 
-      .nomor-rekening {
-        font-size: 11px;
-      }
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.4s, fadeout 0.4s 2.5s;
+    }
 
-      .copy-button {
-        font-size: 11px;
-        padding: 5px 8px;
+    @keyframes fadein {
+      from {
+        bottom: 0;
+        opacity: 0;
+      }
+      to {
+        bottom: 30px;
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeout {
+      from {
+        bottom: 30px;
+        opacity: 1;
+      }
+      to {
+        bottom: 0;
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .rek {
+        max-width: 100px;
       }
     }
   </style>
 </head>
 <body>
-
-  <div class="rekening-container">
-    <!-- Rekening 1 -->
-    <div class="rekening-box">
-      <img src="https://via.placeholder.com/100" class="logo-bank" alt="Logo Bank 1">
-      <div class="rekening-detail">
-        <div class="bank-name">BANK BCA</div>
-        <div class="nomor-rekening" id="rekening1">12345678901234567890</div>
+  <div class="container">
+  	
+    <!-- USDT -->
+    <div class="card usdt">
+      <div class="left">
+        <div class="bank">USDT</div>
+        <div class="subinfo">TRX - Tron ( TRC20 ) </div>
+        <div class="rek" id="rek3">TCP1A4ZDFXsxJ12PP9hc3iDzGebmbHv69A</div>
       </div>
-      <button class="copy-button" onclick="salinRekening('rekening1')">Salin</button>
+      <button class="btn-copy" onclick="salin('rek3')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2M16 
+               8h2a2 2 0 012 2v8a2 2 0 01-2 2h-8a2 2 0 01-2-2v-2"
+          />
+        </svg>
+        Copy
+      </button>
+    </div>
+    
+    <!-- DANA -->
+    <div class="card dana">
+      <div class="left">
+        <div class="bank">DANA</div>
+        <div class="rek" id="rek1">081324481206</div>
+      </div>
+      <button class="btn-copy" onclick="salin('rek1')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2M16 
+               8h2a2 2 0 012 2v8a2 2 0 01-2 2h-8a2 2 0 01-2-2v-2"
+          />
+        </svg>
+        Copy
+      </button>
     </div>
 
-    <!-- Rekening 2 -->
-    <div class="rekening-box">
-      <img src="https://via.placeholder.com/100" class="logo-bank" alt="Logo Bank 2">
-      <div class="rekening-detail">
-        <div class="bank-name">BANK MANDIRI</div>
-        <div class="nomor-rekening" id="rekening2">98765432109876543210</div>
+    <!-- GoPay -->
+    <div class="card gopay">
+      <div class="left">
+        <div class="bank">GoPay</div>
+        <div class="rek" id="rek2">082119690755</div>
       </div>
-      <button class="copy-button" onclick="salinRekening('rekening2')">Salin</button>
-    </div>
-
-    <!-- Rekening 3 -->
-    <div class="rekening-box">
-      <img src="https://via.placeholder.com/100" class="logo-bank" alt="Logo Bank 3">
-      <div class="rekening-detail">
-        <div class="bank-name">BANK BNI</div>
-        <div class="nomor-rekening" id="rekening3">11223344556677889900</div>
-      </div>
-      <button class="copy-button" onclick="salinRekening('rekening3')">Salin</button>
+      <button class="btn-copy" onclick="salin('rek2')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2M16 
+               8h2a2 2 0 012 2v8a2 2 0 01-2 2h-8a2 2 0 01-2-2v-2"
+          />
+        </svg>
+        Copy
+      </button>
     </div>
   </div>
 
+  <div id="toast">Successfully copied ☺️</div>
+
   <script>
-    function salinRekening(id) {
-      const rekening = document.getElementById(id).textContent;
-      navigator.clipboard.writeText(rekening).then(() => {
-        alert("Nomor rekening disalin: " + rekening);
-      }).catch(() => {
-        alert("Gagal menyalin");
+    function salin(id) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById("toast");
+        toast.className = "show";
+        setTimeout(() => (toast.className = toast.className.replace("show", "")), 3000);
       });
     }
   </script>
-
 </body>
 </html>
