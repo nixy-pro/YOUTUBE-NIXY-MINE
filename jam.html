@@ -1,74 +1,57 @@
-<style>
-  .video-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.3vw;
-    padding: 0;
-    margin: 0;
-  }
-  .video-grid iframe {
-    width: 30.5vw;
-    height: 20.5vw;
-  }
-</style>
 
-<div class="video-grid">
-  <!-- 100x video autoplay, ukuran responsif -->
-  <!-- Video: https://youtu.be/ciqgWvBhzuk -->
-
-  <!-- Mulai -->
-  <!-- Copy 100 iframe dengan setting ini -->
-  <!-- Contoh 5 dulu -->
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0"
-    frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  <!-- ... ulang sampai total 100 iframe -->
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>20 YouTube Videos</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 2px;
+      width: 100vw;
+      height: 100vh;
+      padding: 2px;
+    }
+    .video-grid iframe {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16/9;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="video-grid">
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+  </div>
+</body>
+</html>
