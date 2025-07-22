@@ -3,64 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>20 YouTube Videos - Fullscreen Fit</title>
+  <title>20 YouTube Videos Fullscreen</title>
   <style>
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      width: 100%;
-      height: 100%;
       overflow: hidden;
       background: #000;
+      height: 100%;
+      width: 100%;
     }
-    .grid {
+    #container {
       display: grid;
-      width: 100vw;
       height: 100vh;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(4, 1fr);
+      width: 100vw;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(5, 1fr);
     }
-    .grid iframe {
+    iframe {
       width: 100%;
       height: 100%;
-      border: 1px solid #fff;
-    }
-
-    @media (max-width: 768px) {
-      .grid {
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(5, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(10, 1fr);
-      }
+      border: 1px solid #000;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
-  <div class="grid">
-    <!-- 20 video autoplay -->
-    <!-- Video: https://youtu.be/ciqgWvBhzuk -->
-    <!-- Mulai -->
-    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-    <!-- ulang 19x -->
-    <!-- Gua tulis semua biar langsung pakai -->
-    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/ciqgWvBhzuk?autoplay=1&mute=1&controls=0&rel=0" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+  <div id="container">
+    <!-- 20 video auto generated -->
   </div>
+
+  <script>
+    const container = document.getElementById('container');
+    const videoId = "ciqgWvBhzuk";
+    const url = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&rel=0`;
+
+    for (let i = 0; i < 20; i++) {
+      const iframe = document.createElement("iframe");
+      iframe.src = url;
+      iframe.allow = "autoplay";
+      iframe.frameBorder = "0";
+      iframe.allowFullscreen = true;
+      container.appendChild(iframe);
+    }
+  </script>
 </body>
 </html>
