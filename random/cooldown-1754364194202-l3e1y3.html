@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cooldown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      font-family: 'VT323', monospace;
+    }
+    .judul {
+      text-align: center;
+      font-size: 5vw;
+      color: #000;
+      margin-top: 5vh;
+      margin-bottom: 0.5vh;
+    }
+    #timer {
+      width: 100vw;
+      height: 25vw;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+    }
+    .segment {
+      flex: 1;
+      text-align: center;
+      color: #000;
+    }
+    .number {
+      font-size: 100%;
+    }
+    .label {
+      font-size: 30%;
+      color: #facc15;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="judul">BERAKHIR DALAM</div>
+  <div id="timer">
+    <div class="segment"><div class="number" id="days">00</div><div class="label">hari</div></div>
+    <div class="segment"><div class="number" id="hours">00</div><div class="label">jam</div></div>
+    <div class="segment"><div class="number" id="minutes">00</div><div class="label">menit</div></div>
+    <div class="segment"><div class="number" id="seconds">00</div><div class="label">detik</div></div>
+  </div>
+  <script>
+    const target = new Date("2025-08-06T03:23:00.000Z").getTime();
+    function update() {
+      const now = Date.now();
+      let diff = target - now;
+      if (diff < 0) diff = 0;
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('days').textContent = d.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = h.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = m.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = s.toString().padStart(2, '0');
+    }
+    update();
+    setInterval(update, 1000);
+  </script>
+</body>
+</html>
