@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<title>Cooldown NIXY</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+<style>
+  body {
+    background: #ffffff;
+    font-family: 'VT323', monospace;
+    color: #000000;
+    padding: 10px 0 0 0;
+    margin: auto;
+    user-select: none;
+  }
+  .judul {
+    text-align: center;
+    font-weight: bold;
+    font-size: 36px;
+    margin-bottom: 2px;
+    user-select: none;
+  }
+  #timer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 64px;
+    color: #000000;
+    user-select: none;
+  }
+  #labels {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 21px;
+    color: #000000;
+    margin-top: 5px;
+    font-weight: normal;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="judul">BERAKHIR DALAM</div>
+
+<div id="timer">
+  <div id="days">00</div>
+  <div id="hours">00</div>
+  <div id="minutes">00</div>
+  <div id="seconds">00</div>
+</div>
+
+<div id="labels">
+  <div>hari</div>
+  <div>jam</div>
+  <div>menit</div>
+  <div>detik</div>
+</div>
+
+<script>
+  const target = new Date("2025-08-06T04:50:00.000Z").getTime();
+
+  function updateTimer() {
+    const now = Date.now();
+    let diff = target - now;
+    if (diff < 0) diff = 0;
+
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+
+    document.getElementById('days').textContent = d.toString().padStart(2,'0');
+    document.getElementById('hours').textContent = h.toString().padStart(2,'0');
+    document.getElementById('minutes').textContent = m.toString().padStart(2,'0');
+    document.getElementById('seconds').textContent = s.toString().padStart(2,'0');
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
