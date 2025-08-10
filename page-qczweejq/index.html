@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Untuk Melanjutkan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; }
+        .card { width: 100%; max-width: 450px; padding: 40px; background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .2); border-radius: 20px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, .3); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); text-align: center; }
+        h2 { font-weight: 700; font-size: 1.8rem; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0, 0, 0, .2); }
+        p { color: rgba(255, 255, 255, .85); margin-bottom: 35px; line-height: 1.7; }
+        .btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 16px; margin-bottom: 15px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all .3s ease; cursor: pointer; border: none; position: relative; overflow: hidden; background-size: 200% auto; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; user-select: none; }
+        .btn:focus, .btn:focus-visible { outline: 0; }
+        .btn i, .btn .loader { margin-right: 12px; font-size: 1.2rem; }
+        .btn-subscribe { color: #fff; background-image: linear-gradient(to right, #ff416c 0%, #ff4b2b 51%, #ff416c 100%); }
+        .btn-whatsapp { color: #fff; background-image: linear-gradient(to right, #25d366 0%, #128c7e 51%, #25d366 100%); }
+        .btn:hover { background-position: right center; transform: translateY(-4px) scale(1.02); box-shadow: 0 10px 20px rgba(0, 0, 0, .2); }
+        .btn.loading { pointer-events: none; }
+        .btn.completed { background-image: none; background-color: #00c853; pointer-events: none; }
+        .btn-unlock { background-image: none; background-color: #6c757d; cursor: not-allowed; opacity: .65; }
+        .btn-unlock.unlocked { color: #fff; background-image: linear-gradient(to right, #5e5ce6 0%, #7a7aff 100%); opacity: 1; cursor: pointer; }
+        .loader { width: 20px; height: 20px; border: 3px solid rgba(255, 255, 255, .4); border-top-color: #fff; border-radius: 50%; animation: spin 1s ease-in-out infinite; display: none; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>{{TITLE}}</h2>
+        <p>Selesaikan semua langkah di bawah ini untuk membuka kunci link tujuan.</p>
+        <a href="https://www.youtube.com/@nixy-pro?sub_confirmation=1" class="btn btn-subscribe" id="task1" target="_blank"><i class="fab fa-youtube"></i><div class="loader"></div><span>Subscribe Channel I</span></a>
+        <a href="https://www.youtube.com/channel/UCFj8m_H4g1i9w6h3n_g?sub_confirmation=1" class="btn btn-subscribe" id="task2" target="_blank"><i class="fab fa-youtube"></i><div class="loader"></div><span>Subscribe Channel II</span></a>
+        <a href="https://chat.whatsapp.com/examplegroup" class="btn btn-whatsapp" id="task3" target="_blank"><i class="fab fa-whatsapp"></i><div class="loader"></div><span>Gabung Grup WhatsApp</span></a>
+        <a class="btn btn-unlock" id="unlockBtn"><i class="fas fa-lock"></i><span>Buka Link Tujuan</span></a>
+    </div>
+    <script>
+        let completedTasks = 0;
+        const totalTasks = 3;
+        const tasks = [
+            document.getElementById("task1"),
+            document.getElementById("task2"),
+            document.getElementById("task3")
+        ];
+        const unlockBtn = document.getElementById("unlockBtn");
+
+        function unlockFinalButton() {
+            const icon = unlockBtn.querySelector("i");
+            const text = unlockBtn.querySelector("span");
+            unlockBtn.classList.add("unlocked");
+            unlockBtn.href = "https://youtu.be/xkeFf3nTnZs";
+            unlockBtn.target = "_blank";
+            icon.className = "fas fa-unlock-alt";
+            text.textContent = "Link Terbuka";
+        }
+
+        function handleTask(taskElement) {
+            if (taskElement.dataset.completed) return;
+            taskElement.dataset.completed = "true";
+
+            const icon = taskElement.querySelector("i");
+            const loader = taskElement.querySelector(".loader");
+            const text = taskElement.querySelector("span");
+            const originalText = text.textContent;
+
+            icon.style.display = "none";
+            loader.style.display = "block";
+            text.textContent = "Memverifikasi...";
+            taskElement.classList.add("loading");
+
+            setTimeout(() => {
+                taskElement.classList.remove("loading");
+                taskElement.classList.add("completed");
+                loader.style.display = "none";
+                icon.className = "fas fa-check-circle";
+                icon.style.display = "inline-block";
+                text.textContent = "Selesai: " + originalText;
+                
+                completedTasks++;
+                if (completedTasks === totalTasks) {
+                    unlockFinalButton();
+                }
+            }, 5000); 
+        }
+
+        tasks.forEach(task => {
+            task.addEventListener("click", () => handleTask(task));
+            task.addEventListener("contextmenu", e => e.preventDefault());
+        });
+        
+        // Memastikan tombol unlock juga tidak bisa di-klik kanan
+        unlockBtn.addEventListener("contextmenu", e => e.preventDefault());
+    </script>
+</body>
+</html>
