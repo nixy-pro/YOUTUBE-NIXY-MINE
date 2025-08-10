@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Langkah Terakhir Untuk Mendapatkan File</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h2 {
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn i {
+            margin-right: 10px;
+        }
+        .btn-subscribe {
+            background-color: #c4302b;
+            color: white;
+        }
+        .btn-subscribe:hover {
+            background-color: #a32420;
+            transform: translateY(-3px);
+        }
+        .btn-subscribe.loading {
+            background-color: #b02b27;
+            pointer-events: none; /* Menonaktifkan klik saat loading */
+        }
+        .btn-unlock {
+            background-color: #28a745;
+            color: white;
+            display: none; /* Sembunyikan awalnya */
+        }
+        .btn-unlock:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Langkah Terakhir Untuk Mendapatkan File</h2>
+        <p>Selesaikan satu langkah di bawah ini untuk melanjutkan ke halaman tujuan Anda.</p>
+        <a href="https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw?sub_confirmation=1" class="btn btn-subscribe" id="subscribeBtn" target="_blank">
+            <i class="fa-brands fa-youtube"></i>
+            <span>Langkah 1: Subscribe</span>
+        </a>
+        <a href="https://www.google.com/search?q=example+link" class="btn btn-unlock" id="unlockBtn">
+            <i class="fa-solid fa-unlock-keyhole"></i>
+            <span>Lanjutkan ke Link</span>
+        </a>
+    </div>
+
+    <script>
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        const unlockBtn = document.getElementById('unlockBtn');
+        const subscribeText = subscribeBtn.querySelector('span');
+
+        subscribeBtn.addEventListener('click', () => {
+            // 1. Tampilkan animasi loading
+            subscribeBtn.classList.add('loading');
+            subscribeText.textContent = 'Memproses...';
+            subscribeBtn.querySelector('i').className = 'fa-solid fa-spinner fa-spin';
+
+            // 2. Tunggu beberapa detik (simulasi verifikasi)
+            setTimeout(() => {
+                // 3. Ubah tombol subscribe menjadi status selesai
+                subscribeBtn.querySelector('i').className = 'fa-solid fa-check';
+                subscribeText.textContent = 'Selesai';
+                
+                // 4. Tampilkan tombol unlock
+                unlockBtn.style.display = 'block';
+            }, 7000); // 7 detik
+        });
+    </script>
+</body>
+</html>
