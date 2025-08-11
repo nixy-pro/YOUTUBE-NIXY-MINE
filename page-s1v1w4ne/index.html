@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Untuk Melanjutkan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-color: #1e2127;
+            color: #e0e0e0;
+        }
+        .card {
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            background-color: #242830;
+            border-radius: 24px;
+            box-shadow: 8px 8px 16px #1a1d23, -8px -8px 16px #2e333d;
+            text-align: center;
+        }
+        h2 {
+            font-weight: 600;
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #a0a0a0;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #e0e0e0;
+            background-color: #242830;
+            border: 1px solid #1a1d23;
+            box-shadow: 4px 4px 8px #1a1d23, -4px -4px 8px #2e333d;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            user-select: none;
+        }
+        .btn:hover {
+            color: #fff;
+            box-shadow: 6px 6px 12px #1a1d23, -6px -6px 12px #2e333d;
+            transform: translateY(-2px);
+        }
+        .btn:active {
+            box-shadow: inset 4px 4px 8px #1a1d23, inset -4px -4px 8px #2e333d;
+            transform: translateY(0);
+        }
+        .btn:focus, .btn:focus-visible { outline: 0; }
+        .btn i { margin-right: 12px; font-size: 1.2rem; }
+        .btn-subscribe i { color: #ff4d4d; }
+        .btn-whatsapp i { color: #25d366; }
+        .btn.loading { pointer-events: none; opacity: 0.7; }
+        .btn.completed {
+            color: #fff;
+            background-color: #28a745;
+            box-shadow: inset 4px 4px 8px #218838, inset -4px -4px 8px #2ec350;
+            pointer-events: none;
+        }
+        .btn-unlock { opacity: 0.5; cursor: not-allowed; }
+        .btn-unlock i { color: #a0a0a0; }
+        .btn-unlock.unlocked {
+            opacity: 1;
+            cursor: pointer;
+            color: #fff;
+            background-color: #5865f2;
+            box-shadow: 4px 4px 8px #1a1d23, -4px -4px 8px #2e333d;
+        }
+        .btn-unlock.unlocked i { color: #fff; }
+        .loader {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, .2);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>{{TITLE}}</h2>
+        <p>Selesaikan semua langkah di bawah ini untuk membuka kunci link tujuan.</p>
+        <a href="https://www.youtube.com/@nixy-pro?sub_confirmation=1" class="btn btn-subscribe" id="task1" target="_blank"><i class="fab fa-youtube"></i><div class="loader"></div><span>Subscribe Channel I</span></a>
+        <a href="https://www.youtube.com/channel/UCFj8m_H4g1i9w6h3n_g?sub_confirmation=1" class="btn btn-subscribe" id="task2" target="_blank"><i class="fab fa-youtube"></i><div class="loader"></div><span>Subscribe Channel II</span></a>
+        <a href="https://chat.whatsapp.com/examplegroup" class="btn btn-whatsapp" id="task3" target="_blank"><i class="fab fa-whatsapp"></i><div class="loader"></div><span>Gabung Grup WhatsApp</span></a>
+        <a class="btn btn-unlock" id="unlockBtn"><i class="fas fa-lock"></i><span>Buka Link Tujuan</span></a>
+    </div>
+    <script>
+        let completedTasks = 0;
+        const totalTasks = 3;
+        const tasks = [
+            document.getElementById("task1"),
+            document.getElementById("task2"),
+            document.getElementById("task3")
+        ];
+        const unlockBtn = document.getElementById("unlockBtn");
+
+        function unlockFinalButton() {
+            const icon = unlockBtn.querySelector("i");
+            unlockBtn.classList.add("unlocked");
+            unlockBtn.href = "https://subs4unlock.nixymine.my.id/u00ds6j3";
+            unlockBtn.target = "_blank";
+            icon.className = "fas fa-unlock-alt";
+        }
+
+        function handleTask(taskElement) {
+            if (taskElement.dataset.completed) return;
+            taskElement.dataset.completed = "true";
+
+            const icon = taskElement.querySelector("i");
+            const loader = taskElement.querySelector(".loader");
+            const text = taskElement.querySelector("span");
+
+            icon.style.display = "none";
+            loader.style.display = "block";
+            text.textContent = "Memverifikasi...";
+            taskElement.classList.add("loading");
+
+            setTimeout(() => {
+                taskElement.classList.remove("loading");
+                taskElement.classList.add("completed");
+                loader.style.display = "none";
+                icon.className = "fas fa-check-circle";
+                icon.style.display = "inline-block";
+                text.textContent = "Tugas Selesai";
+                
+                completedTasks++;
+                if (completedTasks === totalTasks) {
+                    unlockFinalButton();
+                }
+            }, 5000); 
+        }
+
+        tasks.forEach(task => {
+            task.addEventListener("click", () => handleTask(task));
+            task.addEventListener("contextmenu", e => e.preventDefault());
+        });
+        
+        unlockBtn.addEventListener("contextmenu", e => e.preventDefault());
+    </script>
+</body>
+</html>
