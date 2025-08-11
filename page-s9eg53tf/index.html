@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selesaikan Verifikasi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-color: #1a1d24; /* Warna background utama */
+            color: #e0e0e0;
+        }
+        .card {
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            background-color: #242830;
+            border-radius: 24px;
+            box-shadow: 8px 8px 16px #1a1d23, -8px -8px 16px #2e333d;
+            text-align: center;
+        }
+        h2 {
+            font-weight: 600;
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #a0a0a0;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #e0e0e0;
+            border: 1px solid #1a1d23;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            user-select: none;
+            gap: 12px; /* [FIX] Memberi jarak antara ikon dan teks */
+        }
+        .btn:focus, .btn:focus-visible { outline: 0; }
+        .btn i { font-size: 1.2rem; }
+        .btn-whatsapp {
+            background: #242830;
+            box-shadow: 4px 4px 8px #1a1d23, -4px -4px 8px #2e333d;
+        }
+        .btn-whatsapp i { color: #25d366; }
+        .btn:hover {
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 6px 6px 12px #1a1d23, -6px -6px 12px #2e333d;
+        }
+        .btn:active {
+            box-shadow: inset 4px 4px 8px #1a1d23, inset -4px -4px 8px #2e333d;
+            transform: translateY(0);
+        }
+        .btn.loading { pointer-events: none; opacity: 0.7; }
+        .btn.completed {
+            color: #fff;
+            background-color: #28a745;
+            box-shadow: inset 4px 4px 8px #218838, inset -4px -4px 8px #2ec350;
+            pointer-events: none;
+        }
+        /* [FIX] Memastikan ikon centang berwarna putih */
+        .btn.completed i {
+            color: #fff;
+        }
+        .btn-unlock {
+            background-color: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .btn-unlock i { color: #e0e0e0; }
+        .btn-unlock.unlocked {
+            opacity: 1;
+            cursor: pointer;
+            color: #fff;
+            background: #5865f2;
+            box-shadow: 4px 4px 8px #1a1d23, -4px -4px 8px #2e333d;
+        }
+        .btn-unlock.unlocked:hover {
+            box-shadow: 6px 6px 12px #1a1d23, -6px -6px 12px #2e333d, 0 0 15px rgba(88, 101, 242, 0.5);
+        }
+        .loader {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, .2);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>{{TITLE}}</h2>
+        <p>Gabung ke grup WhatsApp kami untuk membuka link tujuan Anda.</p>
+        <a href="https://chat.whatsapp.com/examplegroup" class="btn btn-whatsapp" id="verifyBtn" target="_blank"><i class="fab fa-whatsapp"></i><div class="loader" style="display: none;"></div><span>Gabung Grup WhatsApp</span></a>
+        <a class="btn btn-unlock" id="unlockBtn"><i class="fas fa-lock"></i><span>Buka Link Tujuan</span></a>
+    </div>
+    <script>
+        const verifyBtn = document.getElementById("verifyBtn");
+        const unlockBtn = document.getElementById("unlockBtn");
+
+        function unlockFinalButton() {
+            const icon = unlockBtn.querySelector("i");
+            unlockBtn.classList.add("unlocked");
+            unlockBtn.href = "page-s1v1w4ne";
+            unlockBtn.target = "_blank";
+            icon.className = "fas fa-unlock-alt";
+        }
+
+        function handleVerification(taskElement) {
+            if (taskElement.dataset.completed) return;
+            taskElement.dataset.completed = "true";
+
+            const icon = taskElement.querySelector("i");
+            const loader = taskElement.querySelector(".loader");
+            const text = taskElement.querySelector("span");
+            
+            icon.style.display = "none";
+            loader.style.display = "block";
+            text.textContent = "Memverifikasi...";
+            taskElement.classList.add("loading");
+
+            setTimeout(() => {
+                taskElement.classList.remove("loading");
+                taskElement.classList.add("completed");
+                loader.style.display = "none";
+                icon.className = "fas fa-check-circle";
+                icon.style.display = "inline-block";
+                text.textContent = "Tugas Selesai";
+                
+                unlockFinalButton(); // Langsung buka kunci setelah 1 tugas selesai
+            }, 5000); 
+        }
+
+        verifyBtn.addEventListener("click", () => handleVerification(verifyBtn));
+        verifyBtn.addEventListener("contextmenu", e => e.preventDefault());
+        unlockBtn.addEventListener("contextmenu", e => e.preventDefault());
+    </script>
+</body>
+</html>
